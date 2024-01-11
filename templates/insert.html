@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+<script>
+    window.onload = function() {
+      var errorMessage = document.getElementById("error-message").textContent;
+      if (errorMessage !== "") {
+        alert(errorMessage);
+      }
+    }
+  </script>
+{% block title %}Add student{% endblock title %}
+{% block content %}
+<div class="container">
+    <h2>Add Student</h2>
+    <p>In this example, we use <code>.was-validated</code> to indicate what's missing before submitting the form:</p>
+    {% if messages %}
+    <ul class="messages">
+        <div class="alert alert-danger">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </div>   
+
+    </ul>
+    {% endif %}
+    <form action="{% url 'insert' %}" method='POST' enctype="multipart/form-data" name="myForm" onsubmit="return validateForm()">
+        {% csrf_token %}
+      <!-- Trong file insert.html -->
+      <div class="form-group">
+        <label for="uname">First Name:</label>
+        <input type="text" class="form-control" placeholder="Enter First Name" name="first_name" id="first_name">
+      </div>
+
+      <div class="form-group">
+        <label for="text">Last Name:</label>
+        <input type="text" class="form-control" placeholder="Enter Last Name" name="last_name" id="last_name">
+      </div>  
+    
+
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+  </div>
+
+  <script>
+    function validateForm() {
+        var first_name = document.forms["myForm"]["first_name"].value;
+        var last_name = document.forms["myForm"]["last_name"].value;
+
+        if (first_name == "") {
+            alert("Please enter your fisrt name.");
+            return false;
+        }
+
+        if (last_name == "") {
+            alert("Please enter your last name.");
+            return false;
+        }
+
+
+        return true;
+    }
+</script>  
+{% endblock content %}

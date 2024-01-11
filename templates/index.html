@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+  <h2>Student Table</h2>
+   <a href="{% url 'add' %}" class="btn btn-success" role="button">Create</a>
+  <br> 
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in my_data %}
+        
+        <tr>
+          <td>{{ student.id }}</td>
+          <td>{{ student.first_name }}</td>
+          <td>{{ student.last_name }}</td>
+         
+          <td>
+            {% comment %} <a href="{% url 'edit' student.id %}" class="btn btn-primary" role="button">Update</a> {% endcomment %}
+          </td>
+         
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="container mt-4">
+  <ul class="pagination">
+    {% if my_data.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page=1" aria-label="First">
+                <span aria-hidden="true">&laquo;&laquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ my_data.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    {% endif %}
+
+    {% for i in my_data.paginator.page_range %}
+        <li class="page-item {% if my_data.number == i %}active{% endif %}">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+    {% endfor %}
+
+    {% if my_data.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ my_data.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ my_data.paginator.num_pages }}" aria-label="Last">
+                <span aria-hidden="true">&raquo;&raquo;</span>
+            </a>
+        </li>
+    {% endif %}
+</ul>
+
+</div>
+
+{% endblock content %}
