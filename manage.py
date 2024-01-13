@@ -20,3 +20,11 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# import os
+# import sys
+
+# # Đoạn code để tìm và thêm thư mục chung models vào PYTHONPATH
+# current_path = os.path.dirname(os.path.abspath(__file__))
+# models_path = os.path.join(current_path, 'models')
+# sys.path.append(models_path)

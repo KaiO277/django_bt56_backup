@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'student',
     'shop',
     'blog',
+    # 'models',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'BT56.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates', 'models'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
