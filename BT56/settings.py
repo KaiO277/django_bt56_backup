@@ -71,6 +71,12 @@ TEMPLATES = [
     },
 ]
 
+MIGRATION_MODULES = {
+    'blog':'migrations.blog',
+    'shop' : 'migrations.shop',
+    'student':'migrations.student',
+}
+
 WSGI_APPLICATION = 'BT56.wsgi.application'
 
 
