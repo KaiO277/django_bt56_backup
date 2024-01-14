@@ -10,7 +10,8 @@ class product(models.Model):
     name = models.TextField(max_length=250)
     price = models.IntegerField()
     image = models.TextField()
-    test = models.IntegerField()
+    description = models.TextField(null=True, blank=True)
+    test = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name

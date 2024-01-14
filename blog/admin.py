@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import news
+from models.blog_models import news
 
 # Register your models here.
 

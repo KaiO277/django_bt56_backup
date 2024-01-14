@@ -9,7 +9,7 @@ class news(models.Model):
     title = models.TextField(max_length=100)
     content = models.TextField(max_length=250)
     author = models.TextField(max_length = 250)
-    test = models.IntegerField()
+    description = models.TextField(null=True, blank = True)
 
     def __str__(self):
         return self.title
